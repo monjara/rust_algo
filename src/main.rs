@@ -9,7 +9,19 @@ fn div(a: f32, b:f32)  -> (f32, String, bool) { (a / b, String::from("/"), false
 fn rdiv(a: f32, b:f32) -> (f32, String, bool) { (b / a, String::from("/"), true) }
 
 
+fn output_1(fa: f32, fb: f32, fc: f32, fd: f32, sa: String, sb: String, sc: String) {
+    println!("(({}{}{}){}{}){}{}", fa, sa, fb, sb, fc, sc, fd);
+}
 fn output_2(fa: f32, fb: f32, fc: f32, fd: f32, sa: String, sb: String, sc: String) {
+    println!("({}{}({}{}{})){}{}", fa, sa, fb, sb, fc, sc, fd);
+}
+fn output_3(fa: f32, fb: f32, fc: f32, fd: f32, sa: String, sb: String, sc: String) {
+    println!("{}{}(({}{}{}){}{})", fa, sa, fb, sb, fc, sc, fd);
+}
+fn output_4(fa: f32, fb: f32, fc: f32, fd: f32, sa: String, sb: String, sc: String) {
+    println!("{}{}({}{}({}{}{}))", fa, sa, fb, sb, fc, sc, fd);
+}
+fn output_5(fa: f32, fb: f32, fc: f32, fd: f32, sa: String, sb: String, sc: String) {
     println!("({}{}{}){}({}{}{})", fa, sa, fb, sb, fc, sc, fd);
 }
 
@@ -29,29 +41,44 @@ fn main() {
                     let (ans_2, str_2, reverse_2) = fn_2(ans_1, *arr[2]);
                     let (ans_3, str_3, reverse_3) = fn_3(ans_2, *arr[3]);
                     if ans_3 == 10.0 {
-                        if reverse_1 && reverse_2 && reverse_3 {
-                            println!("{}{}({}{}({}{}{}))", *arr[3], str_3, *arr[2], str_2, *arr[1], str_1, *arr[0]);
-                        }
-                        else if !reverse_1 && reverse_2 && reverse_3 {
-                            println!("{}{}({}{}({}{}{}))", *arr[3], str_3, *arr[2], str_2, *arr[0], str_1, *arr[1]);
-                        }
-                        else if reverse_1 && !reverse_2 && reverse_3 {
-                            println!("{}{}(({}{}{}){}{})", *arr[3], str_3, *arr[1], str_1, *arr[0], str_2, *arr[2]);
-                        }
-                        else if reverse_1 && reverse_2 && !reverse_3 {
-                            println!("({}{}({}{}{})){}{}", *arr[2], str_2, *arr[1], str_1, *arr[0], str_3, *arr[3]);
+
+                        let (sa, sb, sc) = if reverse_3 {
+                            if reverse_2 {
+                                (str_3, str_2, str_1)
+                            } else {
+                                (str_3, str_1, str_2)
+                            }
+                        } else {
+                            if reverse_2 {
+                                (str_2, str_1, str_3)
+                            } else {
+                                (str_1, str_2, str_3)
+                            }
+                        };
+                        
+                        if !reverse_1 && !reverse_2 && !reverse_3 {
+                            output_1(*arr[0], *arr[1], *arr[2], *arr[3], sa, sb, sc);
                         }
                         else if reverse_1 && !reverse_2 && !reverse_3 {
-                            println!("(({}{}{}){}{}){}{}", *arr[1], str_1, *arr[0], str_2, *arr[2], str_3, *arr[3]);
+                            output_1(*arr[1], *arr[0], *arr[2], *arr[3], sa, sb, sc);
+                        }
+                        else if reverse_1 && reverse_2 && !reverse_3 {
+                            output_2(*arr[2], *arr[1], *arr[0], *arr[3], sa, sb, sc);
                         }
                         else if !reverse_1 && reverse_2 && !reverse_3 {
-                            println!("({}{}({}{}{})){}{}", *arr[2], str_2, *arr[0], str_1, *arr[1], str_3, *arr[3]);
+                            output_2(*arr[2], *arr[0], *arr[1], *arr[3], sa, sb, sc);
+                        }
+                        else if reverse_1 && !reverse_2 && reverse_3 {
+                            output_3(*arr[3], *arr[1], *arr[0], *arr[2], sa, sb, sc);
                         }
                         else if !reverse_1 && !reverse_2 && reverse_3 {
-                            println!("{}{}(({}{}{}){}{})", *arr[3], str_3, *arr[0], str_1, *arr[1], str_2, *arr[2]);
+                            output_3(*arr[3], *arr[0],*arr[1],  *arr[2], sa, sb, sc);
                         }
-                        else {
-                            println!("(({}{}{}){}{}){}{}", *arr[0], str_1, *arr[1], str_2, *arr[2], str_3, *arr[3]);
+                        else if !reverse_1 && reverse_2 && reverse_3 {
+                            output_4(*arr[3], *arr[2], *arr[0], *arr[1], sa, sb, sc);
+                        }
+                        else if reverse_1 && reverse_2 && reverse_3 {
+                            output_4(*arr[3], *arr[2], *arr[1], *arr[0], sa, sb, sc);
                         }
                     }
                 }
@@ -95,8 +122,7 @@ fn main() {
                         } else {
                             (str_1, str_3, str_2)
                         };
-
-                        output_2(ans_arr[0], ans_arr[1], ans_arr[2], ans_arr[3], sa, sb, sc);
+                        output_5(ans_arr[0], ans_arr[1], ans_arr[2], ans_arr[3], sa, sb, sc);
                     }
                 }
             }
