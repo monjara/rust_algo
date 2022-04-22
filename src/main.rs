@@ -2,25 +2,17 @@ use proconio::input;
 
 fn main() {
     input! {
-        n: i64,
-        a: [u64; n],
-        b: [u64; n],
+        a: f64,
+        b: f64,
+        c: f64,
+        x: f64,
     };
-    let mut a_ans = 0;
-    let mut b_ans = 0;
-    for i in 0..n {
-        for j in 0..n {
-            if i == j {
-                if a[i as usize] == b[j as usize] { a_ans += 1; }
-            } else {
-                if a[i as usize] == b[j as usize] { 
-                    b_ans += 1; 
-                    break;
-                }
-            }
-
-        }
-    }
-    println!("{}", a_ans);
-    println!("{}", b_ans);
+    let ans = if x <= a {
+        1.00
+    } else if x <= b {
+        c / (b - a)
+    } else {
+        0.00
+    };
+    println!("{:.13}", ans);
 }
