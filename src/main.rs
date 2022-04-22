@@ -2,27 +2,18 @@ use proconio::input;
 
 fn main() {
     input! {
-        _n: u64,
-        t: String,
+        v: usize,
+        a: usize,
+        b: usize,
+        c: usize,
     };
-    let mut x = 0;
-    let mut y = 0;
-    let mut d = 0;
-    for c in t.chars() {
-        if c == 'R' {
-            d += 1;
-            d %= 4;
-        } else {
-            if d == 0 {
-                x += 1;
-            } else if d == 1 {
-                y -= 1;
-            } else if d == 2 {
-                x -= 1;
-            } else if d == 3 {
-                y += 1;
-            }
-        }
-    }
-    println!("{} {}", x, y);
+    let rest = v % (a + b + c);
+    let ans = if rest < a {
+        'F'
+    } else if rest < a + b {
+        'M'
+    } else {
+        'T'
+    };
+    println!("{}", ans);
 }
