@@ -2,6 +2,10 @@ use proconio::input;
 
 fn main() {
     input! {s: String}
-    let ans = '0'.to_string() + &s[0..=2];
-    println!("{}", ans);
+    for i in 0..10 {
+        if !s.contains(&i.to_string()) {
+            println!("{}", i);
+            return;
+        }
+    }
 }
