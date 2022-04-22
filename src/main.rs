@@ -2,14 +2,10 @@ use proconio::input;
 
 fn main() {
     input! {
-        mut a: f64,
-        b: f64,
-        k: f64,
+        mut v: [i32; 10],
     }
-    let mut ans = 0;
-    while b > a {
-        a *= k;
-        ans += 1;
+    v.sort_by(|a, b| b.cmp(a));
+    for i in 0..3 {
+        println!("{}", v[i]);
     }
-    println!("{}", ans);
 }
