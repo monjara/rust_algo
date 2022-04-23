@@ -1,20 +1,21 @@
 // use proconio::input;
 
-fn binary_search(key: usize, v: &Vec<usize>) -> isize {
-    let mut left = 0;
-    let mut right = v.len() - 1;
-    while right >= left {
-        let mid = left + (right - left) / 2;
-        if v[mid] == key {
-            return mid as isize;
-        } else if v[mid] > key {
-            right = mid - 1;
-        } else if v[mid] < key {
-            left = mid + 1;
-        }
+fn is_ok(right: usize, key: usize, v: &Vec<usize>) -> bool {
+    v[right] >= key
+}
 
+fn binary_search(key: usize, v: &Vec<usize>) -> isize {
+    let mut left = -1;
+    let mut right = v.len() as isize;
+    while right - left > 1 {
+        let mid = left + (right - left) / 2;
+        if is_ok(mid as usize, key, v) {
+            right = mid;
+        } else {
+            left = mid;
+        }
     }
-    return -1;
+    right
 }
 
 fn main() {
