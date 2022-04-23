@@ -3,16 +3,14 @@ use proconio::input;
 fn main() {
     input! {
         n: usize,
+        a: usize,
         x: usize,
+        y: usize,
     };
-    let mut total = 0;
-    for i in 0..n {
-        input!{
-            mut a: usize,
-        }
-        if i % 2 == 1 { a -= 1; };
-        total += a;
-    }
-    let ans = if x >= total { "Yes" } else { "No" };
+    let ans = if n > a {
+        a * x + (n - a) * y
+    } else {
+        n * x
+    };
     println!("{}", ans);
 }
