@@ -2,9 +2,17 @@ use proconio::input;
 
 fn main() {
     input! {
-        a: usize,
-        b: usize,
+        n: usize,
+        x: usize,
     };
-    let ans = if b >= a {b - a + 1} else {0};
+    let mut total = 0;
+    for i in 0..n {
+        input!{
+            mut a: usize,
+        }
+        if i % 2 == 1 { a -= 1; };
+        total += a;
+    }
+    let ans = if x >= total { "Yes" } else { "No" };
     println!("{}", ans);
 }
