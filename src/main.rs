@@ -1,16 +1,16 @@
+use std::usize;
+
 use proconio::input;
 
 fn main() {
     input! {
-        n: f64,
+        n: usize,
     };
-    let price = (n * 1.08).floor() as usize;
-    let ans = if price < 206 {
-        "Yay!"
-    } else if price == 206 {
-        "so-so"
-    } else {
-        ":("
-    };
-    println!("{}", ans);
+    let mut money = 0;
+    let mut i = 0;
+    while money < n {
+        i += 1;
+        money += i;
+    }
+    println!("{}", i);
 }
