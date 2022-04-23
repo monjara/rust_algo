@@ -2,8 +2,15 @@ use proconio::input;
 
 fn main() {
     input! {
-        x: i64,
+        n: f64,
     };
-    let ans = x.div_euclid(10);
+    let price = (n * 1.08).floor() as usize;
+    let ans = if price < 206 {
+        "Yay!"
+    } else if price == 206 {
+        "so-so"
+    } else {
+        ":("
+    };
     println!("{}", ans);
 }
