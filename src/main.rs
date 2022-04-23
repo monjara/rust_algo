@@ -1,16 +1,10 @@
-use std::usize;
-
 use proconio::input;
 
 fn main() {
     input! {
-        n: usize,
+        a: f64,
+        b: f64,
     };
-    let mut money = 0;
-    let mut i = 0;
-    while money < n {
-        i += 1;
-        money += i;
-    }
-    println!("{}", i);
+    let ans = a * b / 100.0;
+    println!("{}", ans);
 }
