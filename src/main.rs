@@ -2,15 +2,9 @@ use proconio::input;
 
 fn main() {
     input! {
-        n: usize,
-        mut a: [usize; n],
+       x: usize,
+       y: usize,
     };
-    a.sort();
-    for i in 0..n {
-        if i + 1 != a[i] {
-            println!("No");
-            return;
-        }
-    }
-    println!("Yes");
+    let ans = if x == y {x} else {3-(x + y)};
+    println!("{}", ans);
 }
