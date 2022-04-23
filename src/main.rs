@@ -2,9 +2,14 @@ use proconio::input;
 
 fn main() {
     input! {
-       x: usize,
-       y: usize,
+        n: usize,
     };
-    let ans = if x == y {x} else {3-(x + y)};
+    let mut ans = 0;
+    for _i in 0..n {
+        input! {
+            a: usize,
+        };
+        ans += if a > 10 { a - 10 } else { 0 };
+    }
     println!("{}", ans);
 }
