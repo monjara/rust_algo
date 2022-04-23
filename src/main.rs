@@ -2,8 +2,8 @@ use proconio::input;
 
 fn main() {
     input! {
-        a: [usize; 10],
+        h: f64,
     };
-    let ans = a[a[a[0]]];
+    let ans = f64::sqrt(h * (12800000 as f64 + h));
     println!("{}", ans);
 }
