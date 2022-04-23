@@ -2,9 +2,9 @@ use proconio::input;
 
 fn main() {
     input! {
-        mut n: [usize; 3],
+        a: usize,
+        b: usize,
     };
-    n.sort();
-    let ans = n[1] + n[2];
+    let ans = if a <= b && b <= a * 6 { "Yes" } else { "No" };
     println!("{}", ans);
 }
