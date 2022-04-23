@@ -2,9 +2,15 @@ use proconio::input;
 
 fn main() {
     input! {
-        a: f64,
-        b: f64,
+        n: usize,
+        mut a: [usize; n],
     };
-    let ans = a * b / 100.0;
-    println!("{}", ans);
+    a.sort();
+    for i in 0..n {
+        if i + 1 != a[i] {
+            println!("No");
+            return;
+        }
+    }
+    println!("Yes");
 }
