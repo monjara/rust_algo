@@ -1,3 +1,4 @@
+#[allow(dead_code)]
 fn read_a_word<T: std::str::FromStr>() -> Result<T, T::Err> {
     let mut s = String::new();
     std::io::stdin()
@@ -6,6 +7,7 @@ fn read_a_word<T: std::str::FromStr>() -> Result<T, T::Err> {
     s.trim_end().parse()
 }
 
+#[allow(dead_code)]
 fn read_vector<T: std::str::FromStr>() -> Result<Vec<T>, T::Err> {
     let mut s = String::new();
     std::io::stdin()
@@ -17,6 +19,7 @@ fn read_vector<T: std::str::FromStr>() -> Result<Vec<T>, T::Err> {
         .collect()
 }
 
+#[allow(dead_code)]
 fn binary_search(key: usize, v: &Vec<usize>) -> isize {
     let mut left = -1;
     let mut right = (v.len() - 1) as isize;
@@ -40,6 +43,7 @@ fn test_binary_search() {
     assert_eq!(binary_search(1000, &v), 9);
 }
 
+#[allow(dead_code)]
 fn bit_partial_sum(sum: usize, v: &Vec<usize>) -> bool {
     let len = v.len();
     let mut exist = false;
