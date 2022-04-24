@@ -1,40 +1,21 @@
-use proconio::input;
+use std::cmp;
+use std::io;
 
-fn check(s: &str) -> bool {
-    let mut check = 0;
-    for c in s.chars() {
-        if c == '(' {
-            check += 1
-        } else if c == ')' {
-            check -= 1
-        }
-        if check < 0 {
-            return false;
-        };
-    }
-    if check == 0 {
-        true
-    } else {
-        false
-    }
+fn read() -> String {
+    let mut s = String::new();
+    io::stdin().read_line(&mut s).unwrap();
+    s
 }
 
 fn main() {
-    input! {
-        n: usize,
+    let n: isize = read().trim_end().parse().unwrap();
+    let mut min: isize = read().trim_end().parse().unwrap();
+    let mut diff = -1000000005;
+    for _i in 0..n - 1 {
+        let r = read().trim_end().parse().unwrap();
+        let tmp = r - min;
+        diff = cmp::max(diff, tmp);
+        min = cmp::min(min, r);
     }
-
-    for bit in 0..(1 << n) {
-        let mut str = "".to_string();
-        for i in (0..=n - 1).rev() {
-            if (bit & (1 << i)) == 0 {
-                str.push_str("(");
-            } else {
-                str.push_str(")");
-            }
-        }
-        if check(&str) {
-            println!("{}", str);
-        };
-    }
+    println!("{}", diff);
 }
