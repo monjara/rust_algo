@@ -1,29 +1,40 @@
 use proconio::input;
 
-fn binary_search(key: usize, v: &Vec<usize>) -> isize {
-    let mut left = 0;
-    let mut right = v.len() - 1;
-    while right - left > 1 {
-        let mid = left + (right - left) / 2;
-        if v[mid] > key {
-            right = mid;
-        } else {
-            left = mid;
-        }
+fn solve(m: isize, k: &isize, l: &isize, v: &Vec<isize>) -> bool {
+    let mut cnt = 0;
+    let mut pre = 0;
+
+    for i in v {
+        if i - pre >= m && l - i >= m {
+            cnt += 1;
+            pre = *i;
+        };
     }
-    right as isize
+    if &cnt >= k {
+        true
+    } else {
+        false
+    }
 }
 
 fn main() {
     input! {
-        n: usize,
-        k: usize,
-        a: [usize; n],
+        n: isize,
+        l: isize,
+        k: isize,
+        a: [isize; n],
     }
-    let index = if k > a[n-1] {
-        -1
-    } else {
-        binary_search(k, &a)
-    };
-    println!("{}", index);
+
+    let mut left = -1;
+    let mut right = l + 1;
+
+    while right - left > 1 {
+        let mid = left + (right - left) / 2;
+        if solve(mid, &k, &l, &a) {
+            left = mid;
+        } else {
+            right = mid;
+        }
+    }
+    println!("{}", left);
 }
