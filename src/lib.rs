@@ -1,3 +1,22 @@
+fn read_a_word<T: std::str::FromStr>() -> Result<T, T::Err> {
+    let mut s = String::new();
+    std::io::stdin()
+        .read_line(&mut s)
+        .expect("could not read from stdin");
+    s.trim_end().parse()
+}
+
+fn read_vector<T: std::str::FromStr>() -> Result<Vec<T>, T::Err> {
+    let mut s = String::new();
+    std::io::stdin()
+        .read_line(&mut s)
+        .expect("could not read from stdin");
+    s.trim()
+        .split_whitespace()
+        .map(|word| word.parse())
+        .collect()
+}
+
 fn binary_search(key: usize, v: &Vec<usize>) -> isize {
     let mut left = -1;
     let mut right = (v.len() - 1) as isize;
