@@ -1,5 +1,6 @@
 use std::{io, str::FromStr};
 
+#[allow(dead_code)]
 fn read<T: FromStr>() -> Result<T, T::Err> {
     let mut s = String::new();
     io::stdin().read_line(&mut s).unwrap();
@@ -17,18 +18,35 @@ fn read_vector<T: FromStr>() -> Result<Vec<T>, T::Err> {
         .collect()
 }
 
+fn add(x: isize, y:isize) -> isize {x+y}
+fn sub(x: isize, y:isize) -> isize {x-y}
+fn mul(x: isize, y:isize) -> isize {x*y}
+
 fn main() {
-    let _n = read::<isize>().unwrap();
-    let mut a = read_vector::<isize>().unwrap();
-    println!("{:?}", a);
-    for i in 0..a.len() {
-        let tmp = a[i];
-        let mut j = i as isize - 1;
-        while j >= 0 && a[j as usize] > tmp {
-            a[(j + 1) as usize] = a[j as usize];
-            j -= 1;
+    let vec = read_vector::<String>().unwrap();
+    let mut stack: Vec<isize> = Vec::new();
+    for c in &vec {
+        let context = c.as_str();
+        match context {
+            "+" => {
+                let a = stack.pop().unwrap();
+                let b = stack.pop().unwrap();
+                stack.push(add(a, b));
+            },
+            "-" => {
+                let a = stack.pop().unwrap();
+                let b = stack.pop().unwrap();
+                stack.push(sub(b, a));
+            },
+            "*" => {
+                let a = stack.pop().unwrap();
+                let b = stack.pop().unwrap();
+                stack.push(mul(a, b));
+            },
+            n => {
+                stack.push(n.parse().unwrap());
+            }
         }
-        a[j as usize + 1] = tmp;
-        println!("{:?}", a);
     }
+    println!("{}", stack[0]);
 }
