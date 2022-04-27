@@ -1,52 +1,19 @@
-use std::{io, str::FromStr};
+use proconio::input;
 
-#[allow(dead_code)]
-fn read<T: FromStr>() -> Result<T, T::Err> {
-    let mut s = String::new();
-    io::stdin().read_line(&mut s).unwrap();
-    s.trim_end().parse()
+fn s(n: usize) {
+    if n == 1 {
+        print!("{} ", n);
+        return;
+    } else {
+        s(n - 1);
+        print!("{} ", n);
+        s(n - 1);
+    }
 }
-
-fn read_vector<T: FromStr>() -> Result<Vec<T>, T::Err> {
-    let mut s = String::new();
-    io::stdin()
-        .read_line(&mut s)
-        .expect("could not read from stdin");
-    s.trim()
-        .split_whitespace()
-        .map(|word| word.parse())
-        .collect()
-}
-
-fn add(x: isize, y:isize) -> isize {x+y}
-fn sub(x: isize, y:isize) -> isize {x-y}
-fn mul(x: isize, y:isize) -> isize {x*y}
 
 fn main() {
-    let vec = read_vector::<String>().unwrap();
-    let mut stack: Vec<isize> = Vec::new();
-    for c in &vec {
-        let context = c.as_str();
-        match context {
-            "+" => {
-                let a = stack.pop().unwrap();
-                let b = stack.pop().unwrap();
-                stack.push(add(a, b));
-            },
-            "-" => {
-                let a = stack.pop().unwrap();
-                let b = stack.pop().unwrap();
-                stack.push(sub(b, a));
-            },
-            "*" => {
-                let a = stack.pop().unwrap();
-                let b = stack.pop().unwrap();
-                stack.push(mul(a, b));
-            },
-            n => {
-                stack.push(n.parse().unwrap());
-            }
-        }
+    input! {
+        n: usize,
     }
-    println!("{}", stack[0]);
+    s(n);
 }
