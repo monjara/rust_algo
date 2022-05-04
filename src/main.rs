@@ -2,15 +2,17 @@ use proconio::input;
 
 fn main() {
     input! {
-        n: String,
+        n: usize,
+        p: usize,
     }
-    if n.len() == 4 {
-        println!("{}", n);
-    } else {
-        let zero_len = 4 - n.len();
-        for _i in 0..zero_len {
-            print!("0");
+    let mut ans = 0;
+    for _i in 0..n {
+        input! {
+            a: usize,
         }
-        println!("{}", n);
+        if a < p {
+            ans += 1;
+        }
     }
+    println!("{}", ans);
 }
