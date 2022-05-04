@@ -2,17 +2,18 @@ use proconio::input;
 
 fn main() {
     input! {
-        n: usize,
-        p: usize,
+        x: usize,
     }
     let mut ans = 0;
-    for _i in 0..n {
-        input! {
-            a: usize,
-        }
-        if a < p {
-            ans += 1;
-        }
+    if x < 40 {
+        ans = 40 - x;
+    } else if x < 70 {
+        ans = 70 - x;
+    } else if x < 90 {
+        ans = 90 - x;
+    } else {
+        println!("expert");
+        return;
     }
     println!("{}", ans);
 }
