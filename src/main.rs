@@ -2,18 +2,18 @@ use proconio::input;
 
 fn main() {
     input! {
-        x: usize,
+        s_1: String,
+        s_2: String,
+        s_3: String,
+        t: String,
     }
-    let mut ans = 0;
-    if x < 40 {
-        ans = 40 - x;
-    } else if x < 70 {
-        ans = 70 - x;
-    } else if x < 90 {
-        ans = 90 - x;
-    } else {
-        println!("expert");
-        return;
+    for i in t.chars() {
+        match i {
+            '1' => print!("{}", &s_1),
+            '2' => print!("{}", &s_2),
+            '3' => print!("{}", &s_3),
+            _ => {},
+        }
     }
-    println!("{}", ans);
+    println!();
 }
