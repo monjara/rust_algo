@@ -1,19 +1,16 @@
 use proconio::input;
 
-fn s(n: usize) {
-    if n == 1 {
-        print!("{} ", n);
-        return;
-    } else {
-        s(n - 1);
-        print!("{} ", n);
-        s(n - 1);
-    }
-}
-
 fn main() {
     input! {
-        n: usize,
+        n: String,
     }
-    s(n);
+    if n.len() == 4 {
+        println!("{}", n);
+    } else {
+        let zero_len = 4 - n.len();
+        for _i in 0..zero_len {
+            print!("0");
+        }
+        println!("{}", n);
+    }
 }
