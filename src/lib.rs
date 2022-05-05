@@ -68,3 +68,19 @@ fn test_bit_partial_sum() {
     assert_eq!(bit_partial_sum(10, &vec![1, 3, 6]), true);
     assert_eq!(bit_partial_sum(10, &vec![2, 3, 6]), false);
 }
+
+#[allow(dead_code)]
+fn convert_num_to_str(vec: &Vec<u8>) -> String {
+    let mut s = String::from("");
+    for num in vec {
+        s.push(('a' as u8 + num - 1) as char);
+    }
+    s
+}
+
+#[test]
+fn test_convert_num_to_str() {
+    let vec: Vec<u8> = vec![ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26];
+    assert_eq!(convert_num_to_str(&vec), "abcdefghijklmnopqrstuvwxyz");
+}
+
