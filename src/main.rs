@@ -2,9 +2,14 @@ use proconio::input;
 
 fn main() {
     input! {
-        a: [u8; 26]
+        n: usize,
     }
-    for num in a {
-        print!("{}", ('a' as u8 + num - 1) as char);
-    }
+    let ans = if n <= 125 {
+        4
+    } else if n <= 211 {
+        6
+    } else {
+        8
+    };
+    println!("{}", ans);
 }
