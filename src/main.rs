@@ -2,14 +2,18 @@ use proconio::input;
 
 fn main() {
     input! {
-        n: usize,
+        s: usize,
+        t: usize,
     }
-    let ans = if n <= 125 {
-        4
-    } else if n <= 211 {
-        6
-    } else {
-        8
-    };
+    let mut ans = 0;
+    for a in 0..=s {
+        for b in 0..=s {
+            for c in 0..=s {
+                if a + b + c <= s && a * b * c <= t {
+                    ans += 1;
+                }
+            }
+        }
+    }
     println!("{}", ans);
 }
