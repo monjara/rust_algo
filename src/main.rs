@@ -2,16 +2,15 @@ use proconio::input;
 
 fn main() {
     input! {
-        n: usize,
-        x: usize,
+        v: usize,
+        t: usize,
+        s: usize,
+        d: usize,
     }
-    for _i in 0..n {
-        input! {
-            a: usize,
-        }
-        if a != x {
-            print!("{} ", a);
-        }
-    }
-    println!();
+    let ans = if d < v * t || v * s < d {
+        "Yes"
+    } else {
+        "No"
+    };
+    println!("{}", ans);
 }
