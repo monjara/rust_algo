@@ -2,13 +2,9 @@ use proconio::input;
 
 fn main() {
     input! {
-        s: String,
-        t: String,
+        a: u32,
+        b: u32,
     }
-    let ans = if s < t {
-        "Yes"
-    } else {
-        "No"
-    };
+    let ans = 32usize.pow(a - b);
     println!("{}", ans);
 }
