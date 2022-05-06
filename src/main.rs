@@ -2,12 +2,10 @@ use proconio::input;
 
 fn main() {
     input! {
-        v: usize,
-        t: usize,
-        s: usize,
-        d: usize,
+        s: String,
+        t: String,
     }
-    let ans = if d < v * t || v * s < d {
+    let ans = if s < t {
         "Yes"
     } else {
         "No"
